@@ -78,18 +78,22 @@ button:hover {
 
 .title-container {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    position: relative;
 }
 
-h1 {
-    font-size: 2.5em;
+.title-container h1 {
+    text-align: center;
     margin: 0;
-    color: var(--text-color);
+    font-size: 2.5em;
 }
 
 .help-icon {
+    position: absolute;
+    right: 0;
     color: var(--text-color);
     font-size: 1.5em;
     text-decoration: none;
@@ -390,4 +394,13 @@ h1, h2, h3, label, button, .confidence-interval, #percentile-table {
 /* Keep the sketchy style for results and labels */
 #interval-value, .distribution-title {
     font-family: 'Architects Daughter', cursive;
+}
+
+.tagline {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    opacity: 0.8;
+    font-style: italic;
 }
