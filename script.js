@@ -147,6 +147,11 @@ class GuesstimationCalculator {
             const formula = document.getElementById('formula-input').value.trim();
             const title = document.getElementById('guesstimation-title').value.trim();
             
+            // Validate that we have something to share
+            if (variables.length === 0 || !formula) {
+                throw new Error('Please add variables and formula before sharing');
+            }
+            
             // Create data object
             const data = {
                 title,
@@ -163,8 +168,11 @@ class GuesstimationCalculator {
             const shareUrl = `${window.location.origin}${window.location.pathname}?data=${encodedData}`;
             
             // Show URL container and set URL
+            const shareSection = document.querySelector('.share-section');
             const urlContainer = document.getElementById('share-url-container');
             const urlInput = document.getElementById('share-url');
+            
+            shareSection.style.display = 'block';
             urlContainer.style.display = 'flex';
             urlInput.value = shareUrl;
             
@@ -172,7 +180,7 @@ class GuesstimationCalculator {
             urlInput.select();
         } catch (error) {
             console.error('Error generating share URL:', error);
-            alert('Error generating share URL. Please try again.');
+            alert(error.message || 'Error generating share URL. Please try again.');
         }
     }
 
@@ -489,10 +497,12 @@ class GuesstimationCalculator {
         const loadingSpinner = document.getElementById('loading-spinner');
         const resultsSection = document.getElementById('results');
         const shareSection = document.querySelector('.share-section');
+        const shareUrlContainer = document.getElementById('share-url-container');
         
         // Hide results and show loading spinner
         resultsSection.style.display = 'none';
         shareSection.style.display = 'none';
+        shareUrlContainer.style.display = 'none';
         loadingSpinner.style.display = 'flex';
 
         try {
@@ -581,8 +591,9 @@ class GuesstimationCalculator {
                     this.formatGuesstimationNumber(exactResult, 'exact', 1);
             }
             
-            // Show share section
+            // Show share section but keep URL container hidden until share button is clicked
             shareSection.style.display = 'block';
+            shareUrlContainer.style.display = 'none';
         } catch (error) {
             console.error('Calculation error:', error);
             alert('Error in calculation. Please check your inputs and formula.');
@@ -731,113 +742,102 @@ class GuesstimationCalculator {
     }
 
     createHistogram(results, dataMin, dataMax, range) {
-        try {
-            const canvas = document.getElementById('histogram-canvas');
-            if (!canvas) {
-                throw new Error('Canvas element not found');
-            }
+        const canvas = document.getElementById('histogram-canvas');
+        const ctx = canvas.getContext('2d');
 
-            const ctx = canvas.getContext('2d');
-            if (!ctx) {
-                throw new Error('Could not get canvas context');
-            }
+        // Set canvas dimensions
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
 
-            // Clear the canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Set canvas dimensions
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+        // Set up drawing parameters
+        const padding = { left: 20, right: 20, top: 20, bottom: 60 };
+        const graphWidth = canvas.width - padding.left - padding.right;
+        const graphHeight = canvas.height - padding.top - padding.bottom;
 
-            // Process data in chunks to avoid memory issues
-            const CHUNK_SIZE = 10000;
-            const numBins = 20;
-            const bins = new Uint32Array(numBins);
+        // Calculate histogram data
+        const numBins = 20;
+        const bins = new Array(numBins).fill(0);
+        const binSize = range / numBins;
 
-            // Use passed min/max values
-            const min = dataMin;
-            const max = dataMax;
-            const binSize = range / numBins;
+        results.forEach(value => {
+            const binIndex = Math.min(
+                Math.floor((value - dataMin) / binSize),
+                numBins - 1
+            );
+            bins[binIndex]++;
+        });
 
-            // Count values in chunks
-            for (let i = 0; i < results.length; i += CHUNK_SIZE) {
-                const chunk = results.slice(i, i + CHUNK_SIZE);
-                for (const value of chunk) {
-                    const binIndex = Math.min(
-                        Math.floor((value - min) / binSize),
-                        numBins - 1
-                    );
-                    bins[binIndex]++;
-                }
-            }
+        // Find maximum frequency
+        const maxFrequency = Math.max(...bins);
+        const maxFrequencyIndex = bins.indexOf(maxFrequency);
 
-            // Find maximum frequency and its bin index
-            let maxFrequency = 0;
-            let maxFrequencyIndex = 0;
-            for (let i = 0; i < numBins; i++) {
-                if (bins[i] > maxFrequency) {
-                    maxFrequency = bins[i];
-                    maxFrequencyIndex = i;
-                }
-            }
+        // Drawing settings
+        ctx.strokeStyle = '#2d3436';
+        ctx.lineWidth = 1;
+        ctx.font = "14px 'Architects Daughter'";
 
-            // Set up drawing parameters
-            const padding = { left: 20, right: 20, top: 20, bottom: 40 };
-            const graphWidth = canvas.width - padding.left - padding.right;
-            const graphHeight = canvas.height - padding.top - padding.bottom;
-            const barWidth = graphWidth / numBins;
+        // Draw x-axis
+        ctx.beginPath();
+        ctx.moveTo(padding.left, canvas.height - padding.bottom);
+        ctx.lineTo(canvas.width - padding.right, canvas.height - padding.bottom);
+        ctx.stroke();
 
-            // Draw bars
-            for (let i = 0; i < numBins; i++) {
-                const height = (bins[i] / maxFrequency) * graphHeight;
-                const x = padding.left + i * barWidth;
-                const y = canvas.height - padding.bottom - height;
+        // Draw bars
+        const barWidth = graphWidth / numBins;
+        const diagonalSpacing = 8; // Space between diagonal lines
 
-                // Use different color for the highest frequency bar
-                if (i === maxFrequencyIndex) {
-                    ctx.fillStyle = 'rgba(231, 76, 60, 0.7)'; // Red color for highest bar
-                } else {
-                    ctx.fillStyle = 'rgba(52, 152, 219, 0.7)'; // Blue color for other bars
-                }
+        bins.forEach((count, i) => {
+            const height = (count / maxFrequency) * graphHeight;
+            const x = padding.left + i * barWidth;
+            const y = canvas.height - padding.bottom - height;
 
-                ctx.fillRect(x, y, barWidth - 1, height);
-            }
-
-            // Draw x-axis
+            // Draw bar outline
             ctx.beginPath();
-            ctx.moveTo(padding.left, canvas.height - padding.bottom);
-            ctx.lineTo(canvas.width - padding.right, canvas.height - padding.bottom);
-            ctx.strokeStyle = '#666';
+            ctx.moveTo(x, canvas.height - padding.bottom);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x + barWidth, y);
+            ctx.lineTo(x + barWidth, canvas.height - padding.bottom);
             ctx.stroke();
 
-            // Draw x-axis labels
-            ctx.fillStyle = '#666';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
+            // Draw diagonal lines
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(x, y, barWidth, height);
+            ctx.clip();
 
-            // Draw labels for every bin
-            for (let i = 0; i < numBins; i++) {
-                const x = padding.left + i * barWidth + barWidth / 2;
-                const value = min + (i + 0.5) * binSize; // Middle value of the bin
-                const label = this.formatGuesstimationNumber(value, 'histogram', range);
-                
-                // Rotate labels for better readability
-                ctx.save();
-                ctx.translate(x, canvas.height - padding.bottom + 5);
-                ctx.rotate(Math.PI / 4);
-                ctx.fillText(label, 0, 0);
-                ctx.restore();
+            // Calculate diagonal lines
+            const startX = x - height; // Start before the bar to ensure full coverage
+            const endX = x + barWidth + height; // End after the bar
+            const totalWidth = endX - startX;
+            const numLines = Math.ceil(totalWidth / diagonalSpacing);
+
+            ctx.beginPath();
+            for (let j = 0; j <= numLines; j++) {
+                const lineX = startX + j * diagonalSpacing;
+                ctx.moveTo(lineX, canvas.height - padding.bottom);
+                ctx.lineTo(lineX + height, canvas.height - padding.bottom - height);
             }
 
-        } catch (error) {
-            console.error('Error creating histogram:', error);
-            const histogramDiv = document.getElementById('histogram');
-            histogramDiv.innerHTML = `
-                <div class="error-message">
-                    <p>Error creating histogram visualization: ${error.message}</p>
-                    <p>Please try again or contact support if the problem persists.</p>
-                </div>
-            `;
+            if (i === maxFrequencyIndex) {
+                ctx.strokeStyle = '#e74c3c';
+            }
+            ctx.stroke();
+            ctx.restore();
+            ctx.strokeStyle = '#2d3436';
+        });
+
+        // Add x-axis labels
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        for (let i = 0; i < numBins; i += 2) {
+            const x = padding.left + i * barWidth + barWidth/2;
+            const y = canvas.height - padding.bottom + 10;
+            const value = dataMin + (i + 0.5) * binSize;
+            const label = this.formatGuesstimationNumber(value, 'histogram', range);
+            ctx.fillText(label, x, y);
         }
     }
 
@@ -1004,4 +1004,137 @@ class GuesstimationCalculator {
 // Initialize the calculator when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     new GuesstimationCalculator();
-}); 
+});
+
+function updateHistogram(data) {
+    const ctx = document.getElementById('histogram-canvas').getContext('2d');
+    
+    // Destroy existing chart if it exists
+    if (window.histogramChart) {
+        window.histogramChart.destroy();
+    }
+
+    // Calculate histogram data
+    const values = data.map(d => d.value);
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const binCount = 20;
+    const binSize = (max - min) / binCount;
+    
+    const bins = Array(binCount).fill(0);
+    values.forEach(value => {
+        const binIndex = Math.min(Math.floor((value - min) / binSize), binCount - 1);
+        bins[binIndex]++;
+    });
+
+    const labels = bins.map((_, i) => formatNumber(min + (i + 0.5) * binSize));
+
+    // Find the maximum frequency bin
+    const maxFrequency = Math.max(...bins);
+    const maxFrequencyIndex = bins.indexOf(maxFrequency);
+
+    // Create background patterns for bars
+    const patternCanvas = document.createElement('canvas');
+    const patternCtx = patternCanvas.getContext('2d');
+    patternCanvas.width = 10;
+    patternCanvas.height = 10;
+    
+    // Create diagonal line pattern
+    patternCtx.strokeStyle = '#2d3436';
+    patternCtx.lineWidth = 1;
+    patternCtx.beginPath();
+    patternCtx.moveTo(0, 10);
+    patternCtx.lineTo(10, 0);
+    patternCtx.stroke();
+
+    const pattern = ctx.createPattern(patternCanvas, 'repeat');
+
+    window.histogramChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: bins,
+                backgroundColor: bins.map((_, index) => 
+                    index === maxFrequencyIndex ? 'rgba(231, 76, 60, 0.3)' : pattern
+                ),
+                borderColor: bins.map((_, index) => 
+                    index === maxFrequencyIndex ? '#e74c3c' : '#2d3436'
+                ),
+                borderWidth: 2,
+                borderSkipped: false,
+                hoverBackgroundColor: bins.map((_, index) => 
+                    index === maxFrequencyIndex ? 'rgba(231, 76, 60, 0.5)' : 'rgba(45, 52, 54, 0.2)'
+                ),
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            const binStart = min + item.dataIndex * binSize;
+                            const binEnd = binStart + binSize;
+                            return `Range: ${formatNumber(binStart)} to ${formatNumber(binEnd)}`;
+                        },
+                        label: function(context) {
+                            return `Count: ${context.raw}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    display: true,
+                    grid: {
+                        display: false,
+                        drawBorder: true,
+                        borderColor: '#2d3436',
+                        borderWidth: 2
+                    },
+                    ticks: {
+                        padding: 15,
+                        maxRotation: 45,
+                        minRotation: 45,
+                        font: {
+                            family: "'Architects Daughter', cursive",
+                            size: 12
+                        },
+                        callback: function(value, index) {
+                            // Show fewer labels for better readability
+                            return index % 2 === 0 ? this.getLabelForValue(value) : '';
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#2d3436',
+                        lineWidth: 0.5,
+                        drawBorder: true,
+                        borderColor: '#2d3436',
+                        borderWidth: 2,
+                        tickLength: 10
+                    },
+                    ticks: {
+                        font: {
+                            family: "'Architects Daughter', cursive",
+                            size: 12
+                        },
+                        padding: 10
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            }
+        }
+    });
+} 

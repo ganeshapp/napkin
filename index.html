@@ -19,6 +19,9 @@
     <meta property="og:image" content="https://www.gapp.in/napkin/image.png">
     <meta property="og:url" content="https://www.gapp.in/napkin">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -118,14 +121,14 @@
             </div>
 
             <div class="share-section" style="display: none;">
-                <button id="share-button" class="share-button">Share Napkin</button>
+                <button id="share-button">Share Napkin</button>
                 <div id="share-url-container" class="share-url-container" style="display: none;">
                     <input type="text" id="share-url" class="share-url" readonly>
-                    <button id="copy-url" class="copy-button">Copy</button>
-                    <button id="share-x" class="share-x-button" title="Share on X">
-                        <i class="fab fa-x-twitter"></i> Share on X
-                    </button>
-                    <span id="copy-confirmation" class="copy-confirmation">URL copied!</span>
+                    <div class="share-buttons">
+                        <button id="copy-url">Copy</button>
+                        <button id="share-x">𝕏</button>
+                    </div>
+                    <span id="copy-confirmation" class="copy-confirmation">Copied!</span>
                 </div>
             </div>
         </div>

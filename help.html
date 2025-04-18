@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Back Of The Napkin - Help</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #1a73e8;
+            --background-color: #f9f4e8;
+            --border-color: #2d3436;
+            --text-color: #2d3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Architects Daughter', cursive;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            color: var(--text-color);
+            background-color: var(--background-color);
             margin: 0;
             padding: 20px;
         }
@@ -19,56 +34,148 @@
             margin: 0 auto;
             background: white;
             padding: 30px;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+            position: relative;
         }
 
         h1 {
-            color: #2c3e50;
+            color: var(--text-color);
             text-align: center;
             margin-bottom: 30px;
+            font-size: 2.5em;
         }
 
         h2 {
-            color: #2980b9;
+            color: var(--text-color);
             margin-top: 30px;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-size: 1.4em;
         }
 
         .example {
-            background: #f8f9fa;
+            background: white;
             padding: 20px;
-            border-radius: 6px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             margin: 15px 0;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
         }
 
         .tip {
-            background: #e1f5fe;
-            padding: 15px;
-            border-radius: 6px;
+            background: white;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             margin: 15px 0;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
         }
 
         code {
-            background: #f1f1f1;
-            padding: 2px 6px;
+            background: var(--background-color);
+            padding: 4px 8px;
+            border: 2px solid var(--border-color);
             border-radius: 4px;
-            font-family: monospace;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: bold;
+            font-size: 0.95em;
+            display: inline-block;
+            line-height: 1.4;
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+        }
+
+        /* Add a subtle hover effect for code blocks */
+        code:hover {
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+
+        /* Ensure operators in code blocks are properly spaced */
+        code.operators {
+            letter-spacing: 0.2em;
+            padding: 4px 12px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        ul li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: var(--text-color);
+        }
+
+        ul ul {
+            padding-left: 20px;
         }
 
         .back-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
+            background: white;
+            color: var(--text-color);
             text-decoration: none;
+            border: 2px solid var(--border-color);
             border-radius: 4px;
             margin-top: 20px;
+            font-size: 1.1em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
         }
 
         .back-button:hover {
-            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+        }
+
+        .back-button::before {
+            content: '←';
+            margin-right: 8px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        a:hover {
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* Add sketchy borders to examples and tips */
+        .example::after, .tip::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            pointer-events: none;
+            clip-path: polygon(
+                0% 5%, 5% 0%, 95% 0%, 100% 5%,
+                100% 95%, 95% 100%, 5% 100%, 0% 95%
+            );
         }
     </style>
 </head>
@@ -77,7 +184,7 @@
         <h1>How to Use Back Of The Napkin</h1>
 
         <h2>Basic Concepts</h2>
-        <p>Back Of The Napkin helps you make rough calculations with uncertain values. Instead of exact numbers, you can use ranges and get statistical results. It's perfect for market sizing, forecasting, and numerical estimations. Inspired by <a href="https://filiph.github.io/unsure/" target="_blank">Unsure Calculator</a>.</p>
+        <p>Back Of The Napkin helps you make rough calculations with uncertain values. Instead of exact numbers, you can use ranges and get statistical results. It's perfect for market sizing, forecasting, and numerical estimations. Inspired by <a href="https://filiph.github.io/unsure/" target="_blank">Unsure Calculator <i class="fas fa-external-link-alt"></i></a>.</p>
 
         <h2>Input Formats</h2>
         <ul>
@@ -133,13 +240,13 @@
             <ul>
                 <li>Use descriptive variable names to make your calculations clearer</li>
                 <li>Start with wider ranges if you're more uncertain</li>
-                <li>You can use basic mathematical operators: <code>+ - * / ( ) ^</code></li>
+                <li>You can use basic mathematical operators: <code class="operators">+ - * / ( ) ^</code></li>
                 <li>The calculator will show you different confidence intervals for your results</li>
                 <li>Use the share button to save and share your calculations</li>
             </ul>
         </div>
 
-        <a href="index.html" class="back-button">← Back to Napkin</a>
+        <a href="index.html" class="back-button">Back to Napkin</a>
     </div>
 </body>
 </html> 
