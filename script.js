@@ -101,8 +101,8 @@ class GuesstimationCalculator {
                     group.className = 'input-group';
                     
                     group.innerHTML = `
-                        <input type="text" class="variable-name" placeholder="enter your variable name">
-                        <input type="text" class="variable-value" placeholder="enter the value">
+                        <input type="text" class="variable-name" placeholder="Variable name">
+                        <input type="text" class="variable-value" placeholder="Value">
                         <button class="remove-variable" ${index === 0 ? 'style="visibility: hidden;"' : ''}>➖</button>
                     `;
                     
@@ -291,8 +291,8 @@ class GuesstimationCalculator {
         newGroup.className = 'input-group';
         
         newGroup.innerHTML = `
-            <input type="text" class="variable-name" placeholder="enter your variable name">
-            <input type="text" class="variable-value" placeholder="enter the value">
+            <input type="text" class="variable-name" placeholder="Variable name">
+            <input type="text" class="variable-value" placeholder="Value">
             <button class="remove-variable">➖</button>
         `;
 
