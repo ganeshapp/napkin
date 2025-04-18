@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Of The Napkin</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Back Of The Napkin">
+    <meta name="twitter:description" content="Make better back-of-the-napkin estimates using confidence intervals and Monte Carlo simulation. Perfect for market sizing, forecasting, and numerical estimations.">
+    <meta name="twitter:image" content="https://www.gapp.in/napkin/image.png">
+    
+    <!-- Open Graph meta tags for other social media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Back Of The Napkin">
+    <meta property="og:description" content="Make better back-of-the-napkin estimates using confidence intervals and Monte Carlo simulation. Perfect for market sizing, forecasting, and numerical estimations.">
+    <meta property="og:image" content="https://www.gapp.in/napkin/image.png">
+    <meta property="og:url" content="https://www.gapp.in/napkin">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title-container">
+            <h1>Back Of The Napkin</h1>
+            <a href="help.html" class="help-icon" title="How to use this"><i class="fas fa-question-circle"></i></a>
+        </div>
+
+        <div class="guesstimation-title-container">
+            <div class="title-input-group">
+                <input type="text" id="guesstimation-title" class="guesstimation-title" placeholder="Enter a title for your guesstimation (e.g., Market Size of Korean Fashion Industry)">
+                <button id="random-question" class="random-question-button" title="Get a random guesstimation question">
+                    <i class="fas fa-random"></i> Try a Random Question
+                </button>
+            </div>
+        </div>
+        
+        <div id="variables-container">
+            <div class="input-group">
+                <input type="text" class="variable-name" placeholder="Enter your variable name (e.g., number_of_koreans)">
+                <input type="text" class="variable-value" placeholder="Enter the value (e.g., 50M~55M)">
+                <button class="remove-variable" style="visibility: hidden;">➖</button>
+            </div>
+        </div>
+
+        <button id="add-variable" class="add-button">Add more variables</button>
+
+        <div class="formula-section">
+            <textarea id="formula-input" placeholder="Enter your formula here...(e.g., number_of_koreans * avg_monthly_income * fashion_wallet_share)"></textarea>
+            <div id="formula-suggestions" class="suggestions"></div>
+        </div>
+
+        <button id="calculate" class="calculate-button">Estimate</button>
+
+        <div id="loading-spinner" class="loading-spinner" style="display: none;">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Estimating...</span>
+        </div>
+
+        <div id="results" class="results-section" style="display: none;">
+            <div id="single-value-result" style="display: none;">
+                <div class="result-box">
+                    <div id="exact-value" class="exact-value"></div>
+                    <div class="note">Try to make some inputs into a range, such as writing 10~20 instead of 10.</div>
+                </div>
+            </div>
+            
+            <div id="simulation-results" style="display: none;">
+                <div class="confidence-interval">
+                    <div class="confidence-selector">
+                        <label class="radio-label">
+                            <input type="radio" name="confidence-level" value="95" />
+                            95%
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="confidence-level" value="90" checked />
+                            90%
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="confidence-level" value="80" />
+                            80%
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="confidence-level" value="50" />
+                            50%
+                        </label>
+                    </div>
+                    <div id="interval-value"></div>
+                </div>
+                
+                <div id="histogram" class="result-box">
+                    <h3>Distribution</h3>
+                    <canvas id="histogram-canvas"></canvas>
+                </div>
+                
+                <div id="percentiles" class="result-box">
+                    <h3>Percentiles</h3>
+                    <table id="percentile-table">
+                        <thead>
+                            <tr>
+                                <th>Percentile</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="reveal-answer-section" class="reveal-answer-section" style="display: none;">
+                <button id="reveal-answer" class="reveal-answer-button">
+                    <i class="fas fa-lightbulb"></i> Reveal Expert's Answer
+                </button>
+                <div id="answer-display" class="answer-display" style="display: none;"></div>
+            </div>
+
+            <div class="share-section" style="display: none;">
+                <button id="share-button" class="share-button">Share Napkin</button>
+                <div id="share-url-container" class="share-url-container" style="display: none;">
+                    <input type="text" id="share-url" class="share-url" readonly>
+                    <button id="copy-url" class="copy-button">Copy</button>
+                    <button id="share-x" class="share-x-button" title="Share on X">
+                        <i class="fab fa-x-twitter"></i> Share on X
+                    </button>
+                    <span id="copy-confirmation" class="copy-confirmation">URL copied!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

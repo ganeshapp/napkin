@@ -1,0 +1,502 @@
+[
+  {
+    "id": 1,
+    "question": "How many piano tuners are there in New York City?",
+    "estimated_answer": "Around 150-200"
+  },
+  {
+    "id": 2,
+    "question": "How many golf balls can fit in a Boeing 747?",
+    "estimated_answer": "About 23 million"
+  },
+  {
+    "id": 3,
+    "question": "How many windows are in Manhattan?",
+    "estimated_answer": "Around 50 million"
+  },
+  {
+    "id": 4,
+    "question": "How many gas stations are there in the United States?",
+    "estimated_answer": "Around 145,000"
+  },
+  {
+    "id": 5,
+    "question": "How many cups of coffee are consumed in London every day?",
+    "estimated_answer": "Around 20 million"
+  },
+  {
+    "id": 6,
+    "question": "How many ATMs are there in the world?",
+    "estimated_answer": "Around 3.5 million"
+  },
+  {
+    "id": 7,
+    "question": "How many Uber rides happen every day in New York?",
+    "estimated_answer": "Over 500,000"
+  },
+  {
+    "id": 8,
+    "question": "How many haircuts are done daily in Seoul?",
+    "estimated_answer": "Around 200,000"
+  },
+  {
+    "id": 9,
+    "question": "How many tennis balls are used during Wimbledon?",
+    "estimated_answer": "Around 54,000"
+  },
+  {
+    "id": 10,
+    "question": "How many emails are sent globally each minute?",
+    "estimated_answer": "Over 200 million"
+  },
+  {
+    "id": 11,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 12,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 13,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 14,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 15,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 16,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 17,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 18,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 19,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 20,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 21,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 22,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 23,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 24,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 25,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 26,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 27,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 28,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 29,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 30,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 31,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 32,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 33,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 34,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 35,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 36,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 37,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 38,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 39,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 40,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 41,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 42,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 43,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 44,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 45,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 46,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 47,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 48,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 49,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 50,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 51,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 52,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 53,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 54,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 55,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 56,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 57,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 58,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 59,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 60,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 61,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 62,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 63,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 64,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 65,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 66,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 67,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 68,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 69,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 70,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 71,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 72,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 73,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 74,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 75,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 76,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 77,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 78,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 79,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 80,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 81,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 82,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 83,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 84,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 85,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 86,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 87,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 88,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 89,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 90,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  },
+  {
+    "id": 91,
+    "question": "How many books are produced globally per year?",
+    "estimated_answer": "Over 2.2 million published annually"
+  },
+  {
+    "id": 92,
+    "question": "How many cars are produced globally per year?",
+    "estimated_answer": "About 90 million"
+  },
+  {
+    "id": 93,
+    "question": "How many bicycles are produced globally per year?",
+    "estimated_answer": "Roughly 100 million"
+  },
+  {
+    "id": 94,
+    "question": "How many toothbrushes are produced globally per year?",
+    "estimated_answer": "Over 5 billion"
+  },
+  {
+    "id": 95,
+    "question": "How many shoes are produced globally per year?",
+    "estimated_answer": "Over 24 billion pairs"
+  },
+  {
+    "id": 96,
+    "question": "How many plastic bottles are produced globally per year?",
+    "estimated_answer": "About 500 billion"
+  },
+  {
+    "id": 97,
+    "question": "How many tweets are produced globally per year?",
+    "estimated_answer": "Over 500 million per day"
+  },
+  {
+    "id": 98,
+    "question": "How many photos are produced globally per year?",
+    "estimated_answer": "More than 1 trillion"
+  },
+  {
+    "id": 99,
+    "question": "How many cans are produced globally per year?",
+    "estimated_answer": "Over 300 billion"
+  },
+  {
+    "id": 100,
+    "question": "How many smartphones are produced globally per year?",
+    "estimated_answer": "Around 1.5 billion"
+  }
+]
