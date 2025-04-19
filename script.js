@@ -338,9 +338,6 @@ class GuesstimationCalculator {
                 `<div class="suggestion-item">${name}</div>`
             ).join('');
             
-            const inputRect = input.getBoundingClientRect();
-            suggestions.style.top = `${inputRect.bottom}px`;
-            suggestions.style.left = `${inputRect.left}px`;
             suggestions.style.display = 'block';
             
             suggestions.querySelectorAll('.suggestion-item').forEach(item => {
